@@ -1,2 +1,7 @@
 <h3>Profile Page</h3>
-<%= @user.first_name %>
+<p>Your name: <%= "#{@user.first_name} #{@user.last_name}" %></p>
+<p>Your email: <%= @user.email %></p>
+<% if @user.license_number != nil %>
+  <p>Your licence number: <%= @user.license_number %></p>
+<% end %>
+<%= link_to "Edit your Details", edit_user_registration_path(@user) %>
