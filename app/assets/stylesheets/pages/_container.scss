@@ -1,0 +1,17 @@
+#landing-page-background {
+  background-image: url(landing_background.jpeg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 800px; /* Set the height of the container */
+
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   background-color: rgba(255, 255, 255, 0.5); /* Adjust the alpha value for transparency */
+  // }
+}

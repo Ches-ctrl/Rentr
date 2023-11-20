@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="background" id="landing-page-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 d-flex flex-column justify-content-center align-items-center mx-auto" style="height: 500px">
+        <div class="landing-page-container text-center">
+          <h2><strong>Rent your next adventure</strong></h2>
+          <p>Everything you need to rent your next car</p>
+          <%= link_to "Start your journey", cars_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
