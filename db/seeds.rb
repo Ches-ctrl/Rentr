@@ -34,7 +34,8 @@ puts User.all
     transmission: Faker::Vehicle.transmission,
     day_rate: Faker::Number.decimal(l_digits: 2),
     description: Faker::Vehicle.standard_specs,
-    user_id: User.all.sample.id
+    user_id: User.all.sample.id,
+    photos: ['flintstone.jpeg']
   )
   car.save!
   puts "Created a car"

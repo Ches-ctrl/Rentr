@@ -1,0 +1,19 @@
+.card-image {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  object-fit: cover;
+  height: 250px;
+  width: 100%;
+}
+
+// .card-image img {
+//   object-fit: cover;
+//   height: 100%; /* Ensure the height is set to 100% to fill the container */
+//   width: 100%; /* Ensure the width is set to 100% to fill the container */
+// }
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+}
