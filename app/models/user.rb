@@ -4,8 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :cars, dependent: :destroy
   has_many :bookings, dependent: :destroy
-  has_many :cars, through: :bookings, dependent: :destroy
+  has_many :booked_cars, through: :bookings, dependent: :destroy, source: :car
   validates :first_name, :last_name, presence: true
   # Removed :email from presence true to re-enable edit my details without
   # changing my password, but still putting in current password.

@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+#profile-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px auto;
+  width: 70%;
+  padding: 25px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.car-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

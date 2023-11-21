@@ -1,9 +1,23 @@
-<h3>Profile Page</h3>
-<p>Your name: <%= "#{@user.first_name} #{@user.last_name}" %></p>
-<p>Your email: <%= @user.email %></p>
-<% if @user.license_number != nil %>
-  <p>Your licence number: <%= @user.license_number %></p>
-<% end %>
-<%= link_to "Edit your Details", edit_user_registration_path(@user) %>
-
-<%= link_to "Add a car", new_car_path %>
+<h1>Welcome <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+<div id="profile-details">
+  <%= cl_image_tag current_user.photo.key, class: "avatar-large" %>
+  <div id="profile-info">
+    <p>Your email: <%= current_user.email %></p>
+    <% if current_user.license_number %>
+      <p>Your driving licence number: <%= current_user.license_number %></p>
+    <% end %>
+  </div>
+</div>
+<div id="profile-items">
+  <div id="profile-cars">
+    <h4><%= link_to "Your Cars", user_cars_cars_path %></h4>
+    <% current_user.cars.each do |car| %>
+      <div class="car-card">
+      </div>
+    <% end %>
+  </div>
+  <div id="profile-bookings">
+    <h4><%= link_to "Your Bookings", user_bookings_bookings_path %></h4>
+  </div>
+</div>
+<%= link_to "Add car", new_car_path %>
