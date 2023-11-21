@@ -1,10 +1,31 @@
-.card-image {
-  display: flex;
-  justify-content: center;
+.card {
+  border-radius: 15px;
   overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transform: scale(1.01);
+  }
+}
+
+.card-image {
+  object-position: center;
   object-fit: cover;
-  height: 250px;
   width: 100%;
+}
+
+.card a {
+  text-decoration: none;
+  font-weight: 800;
+  color: black;
+}
+
+.card-body {
+  padding: 10px;
 }
 
 // .card-image img {
@@ -13,7 +34,24 @@
 //   width: 100%; /* Ensure the width is set to 100% to fill the container */
 // }
 
-.card-details {
+.card-details-1 {
   display: flex;
   justify-content: space-between;
+}
+
+.card-details-2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-text {
+  margin-bottom: 4px;
+}
+
+.card-title {
+  margin-bottom: 0px;
+}
+
+.card-price {
+  margin-bottom: 4px;
 }
