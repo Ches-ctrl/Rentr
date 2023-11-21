@@ -12,8 +12,16 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources "cars", only: [:index, :show, :new, :create, :destroy] do
+    collection do
+      get :user_cars
+    end
     resources "bookings", only: [:new, :create, :index]
   end
 
-  resources "bookings", only: [:destroy]
+  resources "bookings", only: [:destroy] do
+    collection do
+      get :user_bookings
+    end
+  end
+
 end
