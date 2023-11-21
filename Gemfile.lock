@@ -119,6 +119,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     drb (2.2.0)
       ruby2_keywords
     error_highlight (0.5.1)
@@ -291,6 +295,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  dotenv-rails
   error_highlight (>= 0.4.0)
   faker
   font-awesome-sass (~> 6.1)
