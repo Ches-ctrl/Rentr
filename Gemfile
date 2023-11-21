@@ -2,9 +2,12 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+# Manual additions
+gem "dotenv-rails"
+gem "cloudinary"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.2"
-gem "dotenv-rails"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

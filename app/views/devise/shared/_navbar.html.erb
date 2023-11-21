@@ -21,7 +21,11 @@
                 <%= link_to "My Bookings", user_bookings_bookings_path, class: "nav-link" %>
               </li>
               <li class="nav-item dropdown">
-                <%= image_tag "https://media.licdn.com/dms/image/C4E03AQEtADGC1FHZnA/profile-displayphoto-shrink_800_800/0/1618440935686?e=1705536000&v=beta&t=JtuqxurDDxjb9TRFxmTqGbtwXTInYvGqPuiszM_D39Q", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% if current_user.photo.key %>
+                  <%= cl_image_tag current_user.photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <% else %>
+                  <%= image_tag('avatar_default.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+                <% end %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "Account", profile_path(current_user), class: "dropdown-item" %>
                   <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
