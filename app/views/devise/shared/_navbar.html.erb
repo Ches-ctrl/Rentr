@@ -12,13 +12,13 @@
           <ul class="navbar-nav me-auto">
             <% if user_signed_in? %>
               <li class="nav-item active">
-                <%= link_to "All Cars", "#", class: "nav-link" %>
+                <%= link_to "All Cars", cars_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "My Cars", "#", class: "nav-link" %>
+                <%= link_to "My Cars", user_cars_cars_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "My Bookings", "#", class: "nav-link" %>
+                <%= link_to "My Bookings", user_bookings_bookings_path, class: "nav-link" %>
               </li>
               <li class="nav-item dropdown">
                 <%= image_tag "https://media.licdn.com/dms/image/C4E03AQEtADGC1FHZnA/profile-displayphoto-shrink_800_800/0/1618440935686?e=1705536000&v=beta&t=JtuqxurDDxjb9TRFxmTqGbtwXTInYvGqPuiszM_D39Q", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>

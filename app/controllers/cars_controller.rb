@@ -13,13 +13,17 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(params[:car])
-
+    @car = Car.new(car_params)
+    @car.user = User.find(current_user.id)
     if @car.save
       redirect_to @car
     else
-      render :new
+      render :new, notice: :unprocessable_entity
     end
+  end
+
+  def user_cars
+    @cars = Car.where(user: current_user)
   end
 
   private
@@ -29,6 +33,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:category, :model, :brand, :location, :transmission, :day_rate, :description)
+    params.require(:car).permit(:category, :model, :brand, :location, :transmission, :day_rate, :description, :user_id)
   end
 end
