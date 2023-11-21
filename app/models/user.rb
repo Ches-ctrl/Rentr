@@ -6,9 +6,10 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
   has_many :cars, through: :bookings, dependent: :destroy
-  validates :first_name, :last_name, :email, presence: true
+  validates :first_name, :last_name, presence: true
   # Removed :email from presence true to re-enable edit my details without
   # changing my password, but still putting in current password.
   validates :email, uniqueness: true
+  validates :password, presence: true, on: :create
   has_one_attached :photo
 end
