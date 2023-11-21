@@ -10,13 +10,12 @@
                 input_html: { autocomplete: "first-name" }%>
     <%= f.input :last_name,
                 required: false,
-                autofocus: true,
+                autofocus: false,
                 input_html: { autocomplete: "last-name" }%>
     <%= f.input :license_number,
-                autofocus: true,
+                autofocus: false,
                 input_html: { autocomplete: "license-number" }%>
-
-    <%= f.input :email, required: true, autofocus: true %>
+    <%= f.input :email, required: true, autofocus: false %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -29,6 +28,7 @@
     <%= f.input :password_confirmation,
                 required: false,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :photo, as: :file %>
     <%= f.input :current_password,
                 hint: "we need your current password to confirm your changes",
                 required: true,
