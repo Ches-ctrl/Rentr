@@ -1,0 +1,49 @@
+.car-header-info {
+  display: flex;
+  justify-content: start;
+}
+
+.car-header-info p {
+  padding: 0 6px;
+  margin: 0;
+}
+
+.car-header-info a {
+  text-decoration: none;
+}
+
+.car-main-info {
+  display: flex;
+  margin: 32px 0;
+}
+
+.car-main-specs {
+  margin-left: 40px;
+  box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+#cars-carousel {
+  display: flex;
+  overflow: hidden;
+  // position: relative;
+}
+
+.carousel-item {
+
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: fill;
+  flex-shrink: 0;
+  margin-right: 10px;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 8px;
+}
+
+.carousel-item a:last-child {
+  margin-right: 0;
+}

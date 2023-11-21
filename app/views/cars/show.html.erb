@@ -5,3 +5,41 @@
       </div>
   </div>
 </div>
+
+<div class="container">
+  <div class="car-header-info">
+    <p><%= link_to 'Home' , cars_path %></p>
+    <p>|</p>
+    <p><%= @car.category %></p>
+    <p>|</p>
+    <p><%= @car.brand %></p>
+    <p>|</p>
+    <p><%= @car.model %></p>
+  </div>
+
+  <div class="car-main-info">
+
+    <div id="cars-carousel" class="w-50 carousel slide" data-ride="carousel">
+      <div class="carousel-inner w-100">
+
+        <% @car.photos.each_with_index do |photo, index| %>
+          <div class="carousel-item <%= 'active' if index == 0%>" >
+            <%= cl_image_tag photo.key, class: 'd-block w-100' %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="car-main-specs w-50">
+      <h3><%= @car.brand %> <%= @car.model %></h3>
+      <p><strong>Transmission</strong>: <%= @car.transmission %></p>
+      <p><strong>Found in</strong>: <%= @car.location %></p>
+      <p><strong>Price per day</strong>: <%= @car.day_rate %></p>
+      <p><strong>Wouldn't you like to know...</strong>: </p>
+      <p><%= @car.description %></p>
+
+    </div>
+  </div>
+
+</div>
