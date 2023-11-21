@@ -10,6 +10,7 @@
     <% if current_user.license_number %>
       <p>Your driving licence number: <%= current_user.license_number %></p>
     <% end %>
+    <%= link_to raw("<i class='fa-solid fa-pencil'></i> Edit Your Details"), edit_user_registration_path(current_user)%>
   </div>
 </div>
 <div id="profile-items">
