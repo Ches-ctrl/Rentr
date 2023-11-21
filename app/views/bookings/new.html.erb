@@ -1,1 +1,22 @@
-<%= render "form", booking: @booking %>
+<div class="mx-auto p-2 fs-3 font-weight 600">
+<p>Request To Book</p>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div>
+        <% @car.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 600, width: 600, crop: :fill %>
+        <% end %>
+        <div>
+        </div>
+      </div>
+      <!-- Content for the first column -->
+    </div>
+    <div class="col-md-6 sticky-bottom">
+      <%= render "form", booking: @booking %>
+    </div>
+  </div>
+</div>
