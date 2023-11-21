@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+require 'pry'
 puts "Seeding database with users and cars"
 
 puts "Creating 4 users..."
@@ -34,10 +35,15 @@ puts User.all
     transmission: Faker::Vehicle.transmission,
     day_rate: Faker::Number.decimal(l_digits: 2),
     description: Faker::Vehicle.standard_specs,
-    user_id: User.all.sample.id,
-    photos: ['flintstone.jpeg']
+    user_id: User.all.sample.id
+
   )
+
+  file = File.open("app/assets/images/flintstone.jpeg")
+  # binding.pry
+  car.photos.attach(io: file, filename: "flintstones.png", content_type: "image/png")
   car.save!
+
   puts "Created a car"
 end
 
