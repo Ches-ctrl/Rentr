@@ -1,6 +1,8 @@
 .car-header-info {
   display: flex;
   justify-content: start;
+  font-size: 18px;
+  margin: 16px 0;
 }
 
 .car-header-info p {
@@ -10,6 +12,7 @@
 
 .car-header-info a {
   text-decoration: none;
+  color: black;
 }
 
 .car-main-info {
@@ -22,6 +25,8 @@
   box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
   border-radius: 8px;
   padding: 16px;
+  height: 300px;
+  overflow: scroll;
 }
 
 #cars-carousel {
@@ -30,14 +35,10 @@
   // position: relative;
 }
 
-.carousel-item {
-
-}
-
 .carousel-item img {
   width: 100%;
-  height: auto;
-  object-fit: fill;
+  height: 300px;
+  object-fit: cover;
   flex-shrink: 0;
   margin-right: 10px;
   transition: transform 0.3s ease-in-out;
@@ -46,4 +47,24 @@
 
 .carousel-item a:last-child {
   margin-right: 0;
+}
+
+#car-show-main-header a {
+  text-decoration: none;
+  color: black;
+}
+
+#btn-book a {
+  padding: 8px 12px;
+  background-color: rgba(169, 169, 169, 0.5);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+#btn-book a:hover {
+  text-decoration: none;
+  color: black;
+  transition: 0.7s ease;
 }

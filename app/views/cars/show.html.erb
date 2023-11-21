@@ -1,12 +1,12 @@
-<div class="container-fluid mt-2">
+<div class="container-fluid mt-4">
   <div class="row">
-      <div class="col text-center align-items-center">
-        <h1><%= link_to "Book", new_car_booking_path(@car) %></h1>
+      <div class="col text-center align-items-center" id="car-show-main-header">
+        <h1><%= link_to 'Book this car', new_car_booking_path(@car)%></h1>
       </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container mt-4">
   <div class="car-header-info">
     <p><%= link_to 'Home' , cars_path %></p>
     <p>|</p>
@@ -32,13 +32,17 @@
     </div>
 
     <div class="car-main-specs w-50">
-      <h3><%= @car.brand %> <%= @car.model %></h3>
-      <p><strong>Transmission</strong>: <%= @car.transmission %></p>
-      <p><strong>Found in</strong>: <%= @car.location %></p>
-      <p><strong>Price per day</strong>: <%= @car.day_rate %></p>
-      <p><strong>Wouldn't you like to know...</strong>: </p>
-      <p><%= @car.description %></p>
-
+      <div class="text">
+        <h3><%= @car.brand %> <%= @car.model %></h3>
+        <p><strong>Transmission</strong>: <%= @car.transmission %></p>
+        <p><strong>Found in</strong>: <%= @car.location %></p>
+        <p><strong>Price per day</strong>: <%= @car.day_rate %></p>
+        <p><strong>Wouldn't you like to know...</strong> </p>
+        <p><%= @car.description %></p>
+      </div>
+      <div id="btn-book">
+        <%= link_to 'Book this car', new_car_booking_path(@car) %>
+      </div>
     </div>
   </div>
 
