@@ -19,7 +19,11 @@ h1 {
   border-radius: 10px;
 }
 
-.car-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+a {
+  text-decoration: none;
+  color: black;
+
+    &:hover {
+      text-decoration: underline;
+    }
 }
