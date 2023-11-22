@@ -7,15 +7,18 @@
   <% end %>
   <div id="profile-info">
     <p>Your email: <%= current_user.email %></p>
-    <% if current_user.license_number %>
+    <% if current_user.license_number.length >= 1 %>
       <p>Your driving licence number: <%= current_user.license_number %></p>
     <% end %>
     <%= link_to raw("<i class='fa-solid fa-pencil'></i> Edit Your Details"), edit_user_registration_path(current_user)%>
   </div>
 </div>
 <div id="profile-items">
-    <div id="profile-cars">
-      <h4><%= link_to "Your Cars", user_cars_cars_path %></h4>
+    <div class="profile-items-container">
+      <div class="profile-items-header">
+        <h4><%= link_to "Your Cars", user_cars_cars_path %></h4>
+        <h4><%= link_to raw("<i class='fa-solid fa-plus'></i> Add Car"), new_car_path %></h4>
+      </div>
       <% if current_user.cars.any? %>
         <div class="container-fluid mt-2">
           <div class="row">
@@ -52,10 +55,12 @@
           </div>
         </div>
       <% end %>
-      <p><%= link_to raw("<i class='fa-solid fa-plus'></i> Add Car"), new_car_path %></p>
     </div>
-  <div id="profile-bookings">
-    <h4><%= link_to "Your Bookings", user_bookings_bookings_path %></h4>
+  <div class="profile-items-container">
+    <div class="profile-items-header">
+      <h4><%= link_to "Your Bookings", user_bookings_bookings_path %></h4>
+      <h4><%= link_to raw("<i class='fa-solid fa-plus'></i> Find A Car And Book Today!"), cars_path %></h4>
+    </div>
     <% if current_user.bookings.any? %>
       <div class="container-fluid mt-2">
         <div class="row">
@@ -92,6 +97,5 @@
         </div>
       </div>
     <% end %>
-    <p><%= link_to raw("<i class='fa-solid fa-plus'></i> Find A Car And Book Today!"), cars_path %></p>
   </div>
 </div>

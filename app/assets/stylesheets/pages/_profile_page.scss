@@ -20,6 +20,21 @@ h1 {
   box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
 }
 
+.profile-items-container {
+  margin: 20px 10px;
+  border-radius: 10px;
+  padding: 25px;
+  background-color: white;
+  box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
+}
+
+.profile-items-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px;
+}
+
 a {
   text-decoration: none;
   color: black;
