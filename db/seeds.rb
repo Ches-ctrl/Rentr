@@ -26,7 +26,7 @@ puts "Created 4 Users"
 
 puts User.all
 
-24.times do
+12.times do
   car = Car.new(
     category: Faker::Vehicle.car_type,
     model: Faker::Vehicle.model,
@@ -41,16 +41,18 @@ puts User.all
 
   if car.save
     puts "Saved your car"
-    4.times do |i|
+    3.times do |i|
       # Open, attach, and close the file within the block to ensure it's closed immediately after use
-      File.open("app/assets/images/car-photo-#{rand(1..10)}.jpeg") do |file|
-        car.photos.attach(io: file, filename: "car-photo-#{i}.jpeg", content_type: "image/jpeg")
+      File.open("app/assets/images/car-photo-#{rand(1..10)}.png") do |file|
+        car.photos.attach(io: file, filename: "car-photo-#{i}.png", content_type: "image/png")
+        puts "Added an image"
       end
     end
 
     # Attach the last image separately and close the file immediately after
-    File.open("app/assets/images/flintstone.jpeg") do |file|
-      car.photos.attach(io: file, filename: "flintstones.jpeg", content_type: "image/jpeg")
+    File.open("app/assets/images/flintstone.png") do |file|
+      car.photos.attach(io: file, filename: "flintstones.png", content_type: "image/png")
+      puts "Added an image"
     end
   else
     puts "Failed to create a car: #{car.errors.full_messages.join(", ")}"
