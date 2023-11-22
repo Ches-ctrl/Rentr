@@ -39,10 +39,22 @@ puts User.all
 
   )
 
-  file = File.open("app/assets/images/flintstone.jpeg")
-  # binding.pry
-  car.photos.attach(io: file, filename: "flintstones.png", content_type: "image/png")
-  car.save!
+  if car.save
+    puts "Saved your car"
+    4.times do |i|
+      # Open, attach, and close the file within the block to ensure it's closed immediately after use
+      File.open("app/assets/images/car-photo-#{rand(1..10)}.jpeg") do |file|
+        car.photos.attach(io: file, filename: "car-photo-#{i}.jpeg", content_type: "image/jpeg")
+      end
+    end
+
+    # Attach the last image separately and close the file immediately after
+    File.open("app/assets/images/flintstone.jpeg") do |file|
+      car.photos.attach(io: file, filename: "flintstones.jpeg", content_type: "image/jpeg")
+    end
+  else
+    puts "Failed to create a car: #{car.errors.full_messages.join(", ")}"
+  end
 
   puts "Created a car"
 end
