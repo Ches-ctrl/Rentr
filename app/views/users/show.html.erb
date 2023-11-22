@@ -1,9 +1,97 @@
-<h3>Profile Page</h3>
-<p>Your name: <%= "#{@user.first_name} #{@user.last_name}" %></p>
-<p>Your email: <%= @user.email %></p>
-<% if @user.license_number != nil %>
-  <p>Your licence number: <%= @user.license_number %></p>
-<% end %>
-<%= link_to "Edit your Details", edit_user_registration_path(@user) %>
-
-<%= link_to "Add a car", new_car_path %>
+<h1>Welcome <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+<div id="profile-details">
+  <% if current_user.photo.key %>
+    <%= cl_image_tag current_user.photo.key, class: "avatar-large" %>
+  <% else %>
+    <%= image_tag('avatar_default.png', class: "avatar-large") %>
+  <% end %>
+  <div id="profile-info">
+    <p>Your email: <%= current_user.email %></p>
+    <% if current_user.license_number %>
+      <p>Your driving licence number: <%= current_user.license_number %></p>
+    <% end %>
+    <%= link_to raw("<i class='fa-solid fa-pencil'></i> Edit Your Details"), edit_user_registration_path(current_user)%>
+  </div>
+</div>
+<div id="profile-items">
+    <div id="profile-cars">
+      <h4><%= link_to "Your Cars", user_cars_cars_path %></h4>
+      <% if current_user.cars.any? %>
+        <div class="container-fluid mt-2">
+          <div class="row">
+            <% current_user.cars.each do |car| %>
+              <div class="col-md-3 mb-4">
+                <div class="card">
+                  <div class="card-image">
+                    <% if car.photos.attached? %>
+                      <%= link_to car_path(car) do %>
+                        <%= cl_image_tag car.photos.first.key, class: 'card-img-top', alt: "#{car.brand} #{car.model}" %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to car_path(car) do %>
+                        <%= image_tag('new_car.jpg', class: 'card-img-top', alt: 'Placeholder Image') %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="card-body">
+                    <div class="card-title d-flex">
+                      <h2 class="card-title 1 me-2"><%= car.brand %></h2>
+                      <h2><%= car.model %></h2>
+                    </div>
+                    <div class="card-details-1">
+                      <p class="card-text"> <i class="fa-solid fa-gears"></i> <%= car.transmission %></p>
+                      <p class="card-text"> <i class="fa-solid fa-location-dot"></i> <%= car.location %></p>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <p class="card-price"> £<%= car.day_rate.round() %>/day</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      <p><%= link_to raw("<i class='fa-solid fa-plus'></i> Add Car"), new_car_path %></p>
+    </div>
+  <div id="profile-bookings">
+    <h4><%= link_to "Your Bookings", user_bookings_bookings_path %></h4>
+    <% if current_user.bookings.any? %>
+      <div class="container-fluid mt-2">
+        <div class="row">
+          <% current_user.bookings.each do |booking| %>
+            <div class="col-md-3 mb-4">
+              <div class="card">
+                <div class="card-image">
+                  <% if booking.car.photos.attached? %>
+                    <%= link_to car_path(booking.car) do %>
+                      <%= cl_image_tag booking.car.photos.first.key, class: 'card-img-top', alt: "#{booking.car.brand} #{booking.car.model}" %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to car_path(booking.car) do %>
+                      <%= image_tag('new_car.jpg', class: 'card-img-top', alt: 'Placeholder Image') %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="card-body">
+                  <div class="card-title d-flex">
+                    <h5 class="card-title 1 me-2"><%= booking.start_date.strftime('%b %d %Y') %></h5>
+                    <h5> - <%= booking.end_date.strftime('%b %d %Y') %></h5>
+                  </div>
+                  <div class="card-details-1">
+                    <p class="card-text"> <i class="fa-solid fa-car"></i></i> <%= booking.car.brand %> <%= booking.car.model %></p>
+                    <p class="card-price"> £<%= booking.car.day_rate.round() %>/day</p>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <p class="card-text"> <i class="fa-solid fa-money-bill"></i> Total £<%= (booking.end_date.day - booking.start_date.day) * booking.car.day_rate %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <p><%= link_to raw("<i class='fa-solid fa-plus'></i> Find A Car And Book Today!"), cars_path %></p>
+  </div>
+</div>

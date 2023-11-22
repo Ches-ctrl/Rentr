@@ -1,31 +1,30 @@
-
 <div class="container-fluid mt-2">
   <div class="row">
     <% @cars.each do |car| %>
-      <div class="col-md-3 mb-4">
+      <div class="col-md-3 mb-2">
         <div class="card">
           <div class="card-image">
             <% if car.photos.any? %>
               <%= link_to car_path(car) do %>
-                <%= image_tag(car.photos.first, class: 'card-img-top', alt: 'Car Photo') %>
+                <%= image_tag(car.photos.first.url, class: 'card-img-top', alt: "#{car.brand} #{car.model}") %>
               <% end %>
             <% else %>
               <%= link_to car_path(car) do %>
-                <%= image_tag('flintstone.jpeg', class: 'card-img-top', alt: 'Placeholder Image') %>
+                <%= image_tag('new_car.jpg', class: 'card-img-top', alt: 'Placeholder Image') %>
               <% end %>
             <% end %>
           </div>
           <div class="card-body">
-            <div class="card-title">
-              <h2><%= link_to "#{car.brand} #{car.model}", "/cars/#{car.id}" %></h2>
+            <div class="card-title d-flex">
+              <h2 class="card-title 1 me-2"><%= car.brand %></h2>
+              <h2><%= car.model %></h2>
             </div>
-            <div class="card-details">
-              <p class="card-text"><strong>Category:</strong> <%= car.category %></p>
-              <p class="card-text"><strong>Location:</strong> <%= car.location %></p>
+            <div class="card-details-1">
+              <p class="card-text"> <i class="fa-solid fa-gears"></i> <%= car.transmission %></p>
+              <p class="card-text"> <i class="fa-solid fa-location-dot"></i> <%= car.location %></p>
             </div>
-            <div class="card-details">
-              <p class="card-text"><strong>Transmission:</strong> <%= car.transmission %></p>
-              <p class="card-text"><strong>Day Rate:</strong> $<%= car.day_rate %></p>
+            <div class="d-flex justify-content-end">
+              <p class="card-price"> £<%= car.day_rate.round() %>/day</p>
             </div>
           </div>
         </div>
