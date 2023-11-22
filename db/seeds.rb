@@ -8,7 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-require 'pry'
+# TODO: Destroy Bookings
+
+Car.destroy_all
+User.destroy_all
+
 puts "Seeding database with users and cars"
 
 puts "Creating 4 users..."
@@ -64,3 +68,5 @@ end
 puts Car.all
 
 puts "Finished!"
+
+# TODO: Seed Bookings
