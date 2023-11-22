@@ -7,3 +7,14 @@
 a:hover {
     text-decoration: none important;
 }
+
+#booking-link {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+}
+
+#booking-form-title {
+  margin: 24px auto;
+}
