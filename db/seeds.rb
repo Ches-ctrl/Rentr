@@ -47,7 +47,7 @@ puts User.all
     puts "Saved your car"
     3.times do |i|
       # Open, attach, and close the file within the block to ensure it's closed immediately after use
-      File.open("app/assets/images/car-photo-#{rand(1..10)}.png") do |file|
+      File.open("app/assets/images/car-photo-#{rand(1..12)}.png") do |file|
         car.photos.attach(io: file, filename: "car-photo-#{i}.png", content_type: "image/png")
         puts "Added an image"
       end
