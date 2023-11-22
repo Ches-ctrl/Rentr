@@ -1,13 +1,19 @@
 <div class="container-fluid mt-4">
   <div class="row">
       <div class="col text-center align-items-center" id="car-show-main-header">
-        <h1><%= link_to 'Book this car', new_car_booking_path(@car)%></h1>
+        <% if @car.user == current_user %>
+          <h1><%= link_to 'Your car posting', '#' %></h1>
+        <% else %>
+          <h1><%= link_to 'Book this car', new_car_booking_path(@car)%></h1>
+        <% end %>
       </div>
   </div>
 </div>
 
 <div class="container mt-4">
   <div class="car-header-info">
+    <p><%= link_to 'Back' , :back %></p>
+    <p>|</p>
     <p><%= link_to 'Home' , cars_path %></p>
     <p>|</p>
     <p><%= @car.category %></p>
@@ -41,7 +47,11 @@
         <p><%= @car.description %></p>
       </div>
       <div id="btn-book">
-        <%= link_to 'Book this car', new_car_booking_path(@car) %>
+        <% if @car.user == current_user %>
+          <%= link_to 'Edit my car', '#' %>
+        <% else %>
+          <%= link_to 'Book this car', new_car_booking_path(@car) %>
+        <% end %>
       </div>
     </div>
   </div>
