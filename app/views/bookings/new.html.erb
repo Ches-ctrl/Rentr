@@ -1,5 +1,5 @@
 <div class="mx-auto p-2 fs-3 font-weight-600">
-  <p>Request To Book</p>
+  <p class="container d-flex justify-content-start" id="booking-form-title">Booking Form</p>
 </div>
 
 <div class="container mb-5">
@@ -28,8 +28,8 @@
           </div>
         </div>
       </div>
-      <div class="border border-2 rounded-pill m-4">
-        <p class="text-center m-2">Good price. Your dates are £104 less than the avg. daily rate over the last 3 months.</p>
+      <div class="border border-2 rounded-pill m-4 d-none">
+        <p class="text-center m-2 d-none">Good price. Your dates are £104 less than the avg. daily rate over the last 3 months.</p>
     </div>
     </div>
     <div class="col-md-6 sticky-bottom">
@@ -42,7 +42,12 @@
   </div>
 </div>
 <div class="row">
-<div class="border border-2 rounded-pill m-4" ><p1 class="text-center m-2">total price tba </p1></div>
+<div class="border border-2 rounded-pill m-4 d-none" ><p class="text-center m-2">total price tba </p></div>
 </div>
-<div class='row '><h1 id= 'sign_up'><%= link_to 'Log in or sign up to book', new_user_session_path%></h1>
+<div class="container" id="booking-link">
+  <p class="m-1"><%= link_to 'Back' , :back %></p>
+  <p class="m-1">|</p>
+  <p class="m-1"><%= link_to 'Home' , cars_path %></p>
+</div>
+<div class='row d-none '><h1 id= 'sign_up'><%= link_to 'Log in or sign up to book', new_user_session_path%></h1>
 </div>
