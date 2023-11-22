@@ -24,7 +24,7 @@
   </div>
 
   <div class="car-main-info">
-    <div id="cars-carousel" class="w-50 carousel slide" data-ride="carousel">
+    <div id="cars-carousel" class="w-50 carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner w-100">
         <% @car.photos.each_with_index do |photo, index| %>
           <div class="carousel-item <%= 'active' if index == 0%>" >
@@ -32,15 +32,16 @@
           </div>
         <% end %>
       </div>
-      <a class="carousel-control-prev" href="#cars-carousel" role="button" data-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#cars-carousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#cars-carousel" role="button" data-slide="next">
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#cars-carousel" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
+
     <div class="car-main-specs w-50">
       <div class="text">
         <h3><%= @car.brand %> <%= @car.model %></h3>
