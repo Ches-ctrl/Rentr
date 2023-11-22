@@ -2,11 +2,11 @@
   <p>Request To Book</p>
 </div>
 
-<div class="container">
+<div class="container mb-5">
   <div class="row">
-    <div class="col-md-6">
-      <div class="card mb-3" style="max-width: 18rem;">
-        <div class="card-body">
+    <div class="col-md-6 h-100">
+      <div class="card mb-4 h-100" style="max-width: 18rem;">
+        <div class="card-body h-100">
           <!-- Image section without link -->
           <% if @car.photos.any? %>
             <%= image_tag(@car.photos.first.url, class: 'card-img-top img-fluid smaller-img', alt: "#{@car.brand} #{@car.model}") %>
@@ -28,9 +28,12 @@
           </div>
         </div>
       </div>
+      <div class="border border-2 rounded-pill m-4">
+        <p class="text-center m-2">Good price. Your dates are £104 less than the avg. daily rate over the last 3 months.</p>
+    </div>
     </div>
     <div class="col-md-6 sticky-bottom">
-      <div class="card border shadow" style="max-width: 35em align-items-strech ">
+      <div class="card border shadow p-4" style="max-width: 35em;">
         <div class="card-body">
           <%= render "form", booking: @booking %>
         </div>
@@ -38,22 +41,8 @@
     </div>
   </div>
 </div>
-
-<div class="container">
-    <div class="col-md-6">
-      <h2>Log in or sign up to book</h2>
-    </div>
-    <div class="col-md-6">
-      <!-- Other content on the right side -->
-    </div>
-  </div>
-
-<div class="container border thick">
-    <div class="col-md-10">
-      <p>Good price.
-Your dates are £104 less than the avg. daily rate over the last 3 months.</p>
-    </div>
-    <div class="col-md-6">
-      <!-- Other content on the right side -->
-    </div>
-  </div>
+<div class="row">
+<div class="border border-2 rounded-pill m-4" ><p1 class="text-center m-2">total price tba </p1></div>
+</div>
+<div class='row '><h1 id= 'sign_up'><%= link_to 'Log in or sign up to book', new_user_session_path%></h1>
+</div>

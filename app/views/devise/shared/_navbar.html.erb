@@ -15,10 +15,7 @@
                 <%= link_to "All Cars", cars_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "My Cars", user_cars_cars_path, class: "nav-link" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "My Bookings", user_bookings_bookings_path, class: "nav-link" %>
+                <%= link_to "My Bookings", user_bookings_bookings_path, class: "nav-link d-none" %>
               </li>
               <li class="nav-item dropdown">
                 <% if current_user.photo.key %>
