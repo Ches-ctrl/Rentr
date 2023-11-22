@@ -18,13 +18,13 @@
   }
 }
 
-.card-image {
-  object-position: center;
-  object-fit: cover;
-  width: 100%;
+.carousel-item {
   height: 220px;
-  overflow: hidden;
-  display: flex;
+}
+
+.carousel-item img {
+  height: 100% !important;
+  border-radius: 0 !important;
 }
 
 .card-body {
