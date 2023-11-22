@@ -1,11 +1,13 @@
 .avatar {
   width: 40px;
   height: 40px;
+  object-fit: cover;
   border-radius: 50%;
 }
 .avatar-large {
   width: 200px;
   height: 200px;
+  object-fit: cover;
   border-radius: 50%;
 }
 .avatar-bordered {
