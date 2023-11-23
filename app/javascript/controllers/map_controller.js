@@ -4,7 +4,8 @@ import mapboxgl from 'mapbox-gl' // Don't forget this!
 // Connects to data-controller="map"
 export default class extends Controller {
   static values = {
-    apiKey: String
+    apiKey: String,
+    markers: Array
   }
 
   connect() {
@@ -15,7 +16,9 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/satellite-streets-v12"
     })
 
-    this.#centerMapOnLondon()
+    // this.#centerMapOnLondon()
+    this.#addMarkersToMap()
+    this.#fitMapToMarkers()
   }
 
   #centerMapOnLondon() {
@@ -25,5 +28,21 @@ export default class extends Controller {
       zoom: 10, // Zoom level adjusted to show a good amount of detail
       essential: true // this animation is considered essential with respect to prefers-reduced-motion
     });
+  }
+
+  #addMarkersToMap() {
+    this.markersValue.forEach((marker) => {
+      console.log(this.markersValue)
+      new mapboxgl.Marker()
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(this.map)
+    })
+  }
+
+  #fitMapToMarkers() {
+    const bounds = new mapboxgl.LngLatBounds()
+    console.log(this.markersValue);
+    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    this.map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 0 })
   }
 }
