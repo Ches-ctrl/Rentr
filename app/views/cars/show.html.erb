@@ -27,8 +27,8 @@
     <div id="cars-carousel" class="w-50 carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner w-100">
         <% @car.photos.each_with_index do |photo, index| %>
-          <div class="carousel-item <%= 'active' if index == 0%>" >
-            <%= cl_image_tag photo.key, class: 'd-block w-100' %>
+          <div class="car-show-item carousel-item <%= 'active' if index == 0%>" >
+            <%= cl_image_tag photo.key, class: 'd-block w-100 show-car' %>
           </div>
         <% end %>
       </div>
