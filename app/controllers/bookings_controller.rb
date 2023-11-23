@@ -12,7 +12,6 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    # @booking.user = User.find(current_user.id)
     @booking.car = Car.find(params[:car_id])
     if @booking.save
       respond_to do |format|
