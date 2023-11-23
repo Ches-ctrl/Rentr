@@ -2,9 +2,9 @@
   <div class="row">
       <div class="col text-center align-items-center" id="car-show-main-header">
         <% if @car.user == current_user %>
-          <h1><%= link_to 'Your car posting', '#' %></h1>
+          <h1>Your <%= @car.brand %> <%= @car.model %></h1>
         <% else %>
-          <h1><%= link_to 'Book this car', new_car_booking_path(@car)%></h1>
+          <h1><%= @car.brand %> <%= @car.model %></h1>
         <% end %>
       </div>
   </div>
@@ -24,7 +24,7 @@
   </div>
 
   <div class="car-main-info">
-    <div id="cars-carousel" class="w-50 carousel slide" data-bs-ride="carousel">
+    <div id="cars-carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner w-100">
         <% @car.photos.each_with_index do |photo, index| %>
           <div class="car-show-item carousel-item <%= 'active' if index == 0%>" >
@@ -42,7 +42,7 @@
       </button>
     </div>
 
-    <div class="car-main-specs w-50">
+    <div class="car-main-specs">
       <div class="text">
         <h3><%= @car.brand %> <%= @car.model %></h3>
         <p><strong>Transmission</strong>: <%= @car.transmission %></p>
@@ -51,14 +51,57 @@
         <p><strong>Wouldn't you like to know...</strong> </p>
         <p><%= @car.description %></p>
       </div>
-      <div id="btn-book">
-        <% if @car.user == current_user %>
-          <%= link_to 'Edit my car', '#' %>
-        <% else %>
-          <%= link_to 'Book this car', new_car_booking_path(@car) %>
-        <% end %>
-      </div>
     </div>
   </div>
+
+  <hr class="gradient">
+  <div class="car-show-secondary-section">
+
+      <% unless @car.user == current_user  %>
+        <div class="booking-form car-main-specs">
+          <h3 class="car-show-secondary-section-title">Book now!</h3>
+          <%= simple_form_for [@car, @booking] do |f| %>
+            <%= f.input :start_date,
+              as: :string,
+              label_html: { class: 'formLabelStyling' },
+              input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
+            <%= f.input :end_date,
+              as: :string,
+              input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+
+        <%# <div class="booking-details car-main-specs"> %>
+          <%# <h3 class="car-show-secondary-section-title">Your booking details</h3> %>
+          <%# <%= @booking.start_date %>
+        <%# </div> %>
+
+      <% end %>
+
+
+
+      <% if @car.user == current_user %>
+        <div class="active-booking-main-specs w-100">
+          <h3 class="car-show-secondary-section-title">Active bookings for your car</h3>
+          <div class="active-bookings">
+              <% @car.bookings.each do |booking| %>
+                  <div class="active-booking-details">
+                  <strong><p>Booking Reference: <%= booking.id %></p></strong>
+                  <p>Renter: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+                  <p>Booking Dates: <%= booking.start_date.strftime('%b %d %Y') %> - <%= booking.end_date.strftime('%b %d %Y') %></p>
+                  </div>
+              <% end %>
+          </div>
+        </div>
+      <% end %>
+
+
+
+
+  </div>
+
+
+
 
 </div>

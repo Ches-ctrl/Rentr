@@ -14,8 +14,6 @@ class BookingsController < ApplicationController
     @booking.car = Car.find(params[:car_id])
     if @booking.save
       redirect_to profile_path(current_user)
-    else
-      render :new, notice: :unprocessable_entity
     end
   end
 

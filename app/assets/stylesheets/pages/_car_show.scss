@@ -21,12 +21,13 @@
 }
 
 .car-main-specs {
-  margin-left: 40px;
+  width: 48%;
+  margin-bottom: 36px;
   box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
   border-radius: 8px;
   padding: 16px;
   height: 400px;
-  overflow: scrollr;
+  overflow: scroll;
   text-align: left;
 }
 
@@ -34,6 +35,8 @@
   display: flex;
   overflow: hidden;
   // position: relative;
+  margin-right: 40px;
+  width: 48%;
 }
 
 .car-show-item img {
@@ -68,4 +71,65 @@
   text-decoration: none;
   color: black;
   transition: 0.7s ease;
+}
+
+hr.gradient {
+  height: 3px;
+  border: none;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(13, 8, 96, 1) 0%,
+    rgba(9, 9, 121, 1) 21%,
+    rgba(6, 84, 170, 1) 51%,
+  );
+}
+
+.car-show-secondary-section {
+  display: flex;
+  margin: 32px 0;
+  // justify-content: space-between;
+  justify-content: center;
+}
+
+
+.formInputStyling {
+  border-radius: 8px;
+  width: 50%;
+  align-content: start;
+}
+
+.formLabelStyling {
+  align-content: start;
+}
+
+.car-show-secondary-section-title {
+  text-align: start;
+}
+
+.active-booking-main-specs {
+  margin: 36px 0;
+  box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+  height: 400px;
+  overflow: scroll;
+}
+
+.active-bookings {
+  // display: grid;
+  // grid-template-columns: 1fr 1fr 1fr 1fr;
+  // grid-gap: 24px;
+}
+
+.active-booking-details {
+  width: auto;
+  height: auto;
+  box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 24px;
 }
