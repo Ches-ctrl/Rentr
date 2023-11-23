@@ -11,18 +11,3 @@
 @import "components/index";
 @import "pages/index";
 @import "pages/profile_page";
-
-a {
-  color: black;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-#error-message {
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 0.875em;
-  color: var(--bs-form-invalid-color);
-}
