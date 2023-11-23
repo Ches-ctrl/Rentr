@@ -156,6 +156,20 @@ hr.gradient {
 
 
 .your-active-booking-details {
+  width: auto;
+  height: auto;
+  box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+  padding-bottom: 0;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 24px;
+}
 
-
+.your-active-booking-details-title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
 }

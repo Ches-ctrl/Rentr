@@ -89,16 +89,17 @@
           <div class="your-active-bookings">
             <% Booking.where(car: @car, user: current_user).each do |booking| %>
               <div class="your-active-booking-details">
-                <p>Booking Reference: <%= booking.id %></p>
+                <div class="your-active-booking-details-title">
+                  <p>Booking Reference: <%= booking.id %></p>
+                  <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                </div>
                 <p>The Car: <%= booking.car.brand %> <%= booking.car.model %></p>
                 <p>Booking Dates: <%= booking.start_date.strftime('%b %d %Y') %> <%= booking.end_date.strftime('%b %d %Y') %></p>
                 <p>Total Cost: £<%= ((booking.end_date - booking.start_date) * booking.car.day_rate).round(2) %></p>
-
-                <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} do %>
-                  <i class="fa-solid fa-trash"></i>
-                <% end %>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -117,13 +118,5 @@
           </div>
         </div>
       <% end %>
-
-
-
-
   </div>
-
-
-
-
 </div>
