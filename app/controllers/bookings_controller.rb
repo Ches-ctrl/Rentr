@@ -13,7 +13,9 @@ class BookingsController < ApplicationController
     @booking.user = User.find(current_user.id)
     @booking.car = Car.find(params[:car_id])
     if @booking.save
-      redirect_to profile_path(current_user)
+      respond_to do |format|
+        format.js { render inline: "location.reload();" }
+      end
     end
   end
 
