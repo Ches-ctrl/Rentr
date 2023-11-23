@@ -1,0 +1,55 @@
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;  /* Increased from 60px to 1.5x wider */
+  height: 40px; /* Increased from 34px to make it taller */
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .7s;
+  border-radius: 40px; /* Adjusted for rounded ends to fit the new height */
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 32px; /* Increased to fit within the taller switch */
+  width: 32px;  /* Made the slider a bit larger */
+  left: 4px;
+  bottom: 4px;  /* Adjust if needed to center vertically */
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%; /* Ensures the slider is a circle */
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(50px); /* Adjusted to move the slider the new width */
+  -ms-transform: translateX(50px);
+  transform: translateX(50px);
+}

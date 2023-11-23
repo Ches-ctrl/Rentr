@@ -1,55 +1,36 @@
-<div class="container-fluid mt-2">
+<div class="container-fluid mt-2 mb-4" data-controller="toggle">
   <div class="row">
-    <% @cars.each do |car| %>
-      <div class="col-md-3 mb-4">
-        <div class="link-container">
-          <%= link_to car_path(car) do %>
-          <div class="card">
-            <% carousel_id = "carousel#{car.id}Indicators" %>
-            <div class="card-image">
-              <div id="<%= carousel_id %>" class="carousel slide">
-                <div class="carousel-indicators">
-                  <% car.photos.each_with_index do |photo, index| %>
-                    <button type="button" data-bs-target="#<%= carousel_id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-label="Slide <%= index + 1 %>"></button>
-                  <% end %>
-                </div>
-                <div class="carousel-inner">
-                  <% car.photos.each_with_index do |photo, index| %>
-                    <div class="carousel-item <%= 'active' if index.zero? %>">
-                      <%= image_tag(photo, class: 'd-block w-100', alt: "#{car.brand} #{car.model}") %>
-                    </div>
-                  <% end %>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#<%= carousel_id %>" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#<%= carousel_id %>" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Card body content -->
-            </div>
-            <div class="card-body">
-              <div class="card-title d-flex">
-                <h2 class="card-title 1 me-2"><%= car.brand %></h2>
-                <h2><%= car.model %></h2>
-              </div>
-              <div class="card-details-1">
-                <p class="card-text"> <i class="fa-solid fa-gears"></i> <%= car.transmission %></p>
-                <p class="card-text"> <i class="fa-solid fa-location-dot"></i> <%= car.location %></p>
-              </div>
-              <div class="d-flex justify-content-end">
-                <p class="card-price"> £<%= car.day_rate.round() %>/day</p>
-              </div>
-            </div>
+
+    <%# Switch %>
+    <div class="col-12 d-flex align-items-center justify-content-center mb-3"> <!-- Added mb-3 for margin-bottom space under the switch -->
+      <span class="me-2">See map</span> <!-- Text before the switch -->
+      <label class="switch">
+        <input type="checkbox" data-action="click->toggle#toggleMap">
+        <span class="slider round"></span>
+      </label>
+      <span class="ms-2">See cars</span> <!-- Text after the switch -->
+    </div>
+
+    <%# Cars %>
+    <div id="cars-column" class="col-md-6" data-target="toggle.carsColumn">
+      <div class="row"> <!-- This row will contain the grid of car cards -->
+        <% @cars.each do |car| %> <!-- Loop over each car -->
+          <!-- Adjust the column size here for the desired number of cards per row, e.g., 'col-sm-6' for 2 cards per row on small screens and 'col-xl-4' for 3 cards per row on extra large screens -->
+          <div class="col-sm-12 col-xl-6 mb-4">
+            <%= render partial: 'car', locals: { car: car } %> <!-- Render the partial for each car -->
           </div>
-          <% end %>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+
+    <%# Map %>
+    <div id="map-column" class="col-md-6" style="height: 100vh;" data-target="toggle.mapColumn"> <!-- This will take the other half -->
+      <div style="width: 100%; height: 100%; border: 1px solid #ccc; border-radius: 15px; overflow: hidden;"
+        data-controller="map"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        <!-- Your map will be here -->
+      </div>
+    </div>
+
   </div>
 </div>
