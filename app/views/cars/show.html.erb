@@ -58,20 +58,33 @@
   <div class="car-show-secondary-section">
 
       <% unless @car.user == current_user  %>
-        <div class="booking-form car-main-specs">
+        <div class="car-main-specs">
           <h3 class="car-show-secondary-section-title">Book now!</h3>
-          <%= simple_form_for [@car, @booking] do |f| %>
-            <%= f.input :start_date,
-              as: :string,
-              label_html: { class: 'formLabelStyling' },
-              input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
-            <%= f.input :end_date,
-              as: :string,
-              input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
-            <%= f.submit %>
-          <% end %>
+          <div class="booking-form">
+            <%= simple_form_for [@car, @booking] do |f| %>
+              <%= f.input :start_date,
+                as: :string,
+                label_html: { class: 'formLabelStyling' },
+                input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
+              <%= f.input :end_date,
+                as: :string,
+                input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
+              <%= f.submit %>
+            <% end %>
+          </div>
         </div>
 
+        <div class="car-main-specs">
+          <h3 class="car-show-secondary-section-title">Your booking details</h3>
+          <% if @user %>
+            <% @car.renting_users.each do |renting_user| %>
+              <% if renting_user.id == current_user.id %>
+                <p>you have an existing booking</p>
+
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
         <%# <div class="booking-details car-main-specs"> %>
           <%# <h3 class="car-show-secondary-section-title">Your booking details</h3> %>
           <%# <%= @booking.start_date %>
