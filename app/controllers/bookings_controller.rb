@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @car = Car.find(params[:car_id])
+    @booked_dates = @car.bookings.pluck(:start_date, :end_date).map { |pair| (pair[0]..pair[1]).to_a }.flatten
   end
 
   def create
