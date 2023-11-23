@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show]
+  before_action :set_car, only: [:show, :destroy]
 
   def index
     @cars = Car.all
@@ -12,6 +12,7 @@ class CarsController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
   end
 
   def new
@@ -20,12 +21,17 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.user = User.find(current_user.id)
+    @car.user = current_user
     if @car.save
       redirect_to @car
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @car.destroy
+    redirect_to profile_path(current_user)
   end
 
   def user_cars
