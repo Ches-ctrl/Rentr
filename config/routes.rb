@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     collection do
       get :user_cars
     end
-    resources "bookings", only: [:create, :index]
+    resources "bookings", only: [:create, :index,]
   end
 
   resources "bookings", only: [:destroy] do
@@ -23,5 +23,4 @@ Rails.application.routes.draw do
       get :user_bookings
     end
   end
-
 end

@@ -34,7 +34,6 @@
 #cars-carousel {
   display: flex;
   overflow: hidden;
-  // position: relative;
   margin-right: 40px;
   width: 48%;
 }
@@ -94,10 +93,9 @@ hr.gradient {
 
 .car-show-secondary-section {
   display: flex;
-  margin: 32px 0;
+  margin: 72px 0;
   justify-content: space-between;
 }
-
 
 .formInputStyling {
   border-radius: 8px;
@@ -115,11 +113,23 @@ hr.gradient {
 
 .active-booking-main-specs {
   margin: 36px 0;
+  margin-right: 0;
   box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
   border-radius: 8px;
   padding: 16px;
   height: 400px;
   overflow: scroll;
+}
+
+.action-booking-main-specs {
+  width: 48%;
+  margin-bottom: 36px;
+  box-shadow: 3px 3px 3px rgba(169, 169, 169, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+  height: 400px;
+  overflow: scroll;
+
 }
 
 .active-bookings {
@@ -138,4 +148,14 @@ hr.gradient {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 24px;
+}
+
+.your-active-bookings {
+
+}
+
+
+.your-active-booking-details {
+
+
 }

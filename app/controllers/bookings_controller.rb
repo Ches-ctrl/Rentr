@@ -10,13 +10,21 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.user = User.find(current_user.id)
+    @booking.user = current_user
+    # @booking.user = User.find(current_user.id)
     @booking.car = Car.find(params[:car_id])
     if @booking.save
       respond_to do |format|
         format.js { render inline: "location.reload();" }
       end
     end
+
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to profile_path(current_user)
   end
 
   def user_bookings
