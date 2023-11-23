@@ -13,6 +13,7 @@ class CarsController < ApplicationController
 
   def show
     @booking = Booking.new
+    @booked_dates = @car.bookings.pluck(:start_date, :end_date).map { |pair| (pair[0]..pair[1]).to_a }.flatten
   end
 
   def new

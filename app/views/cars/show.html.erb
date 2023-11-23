@@ -61,19 +61,25 @@
   <hr class="gradient">
   <div class="car-show-secondary-section">
 
-      <% unless @car.user == current_user  %>
+      <% unless @car.user == current_user %>
         <div class="car-main-specs">
           <h3 class="car-show-secondary-section-title">Book now!</h3>
           <div class="booking-form">
             <%= simple_form_for [@car, @booking] do |f| %>
-              <%= f.input :start_date,
-                as: :string,
-                label_html: { class: 'formLabelStyling' },
-                input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
-              <%= f.input :end_date,
-                as: :string,
-                input_html: { data: { controller: "datepicker" }, class: "formInputStyling" } %>
-              <%= f.submit %>
+              <% if @booking.errors.any? && @booking.errors.include?(:base) %>
+                <p id="error-message"><%= @booking.errors[:base].first %></p>
+              <% end %>
+              <div data-controller="datepicker" data-datepicker-booked-value="<%= @booked_dates.to_json %>">
+                <%= f.input :start_date,
+                  as: :string,
+                  label: 'Enter chosen dates',
+                  label_html: { class: 'formLabelStyling' },
+                  input_html: { data: { datepicker_target: "start", action: "change->datepicker#update" }, class: "formInputStyling" } %>
+                <%= f.input :end_date,
+                  as: :hidden,
+                  input_html: { data: { datepicker_target: "end" } } %>
+              </div>
+                <%= f.submit %>
             <% end %>
           </div>
         </div>
