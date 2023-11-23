@@ -17,8 +17,10 @@ class BookingsController < ApplicationController
       respond_to do |format|
         format.js { render inline: "location.reload();" }
       end
+    else
+      p @booking.errors.messages
+      render :new, status: :unprocessable_entity
     end
-
   end
 
   def destroy
