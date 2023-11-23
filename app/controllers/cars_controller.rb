@@ -18,7 +18,7 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to @car
     else
-      render :new, notice: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
