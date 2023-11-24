@@ -25,8 +25,11 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
-    @booking.destroy
-    redirect_to profile_path(current_user)
+    if @booking.destroy
+      redirect_to profile_path(current_user), notice: 'Booking successfully cancelled'
+    else
+      render booking_path(@booking), status: :unprocessable_entity
+    end
   end
 
   def user_bookings

@@ -39,15 +39,16 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     if @car.save
-      redirect_to @car
+      redirect_to @car, notice: 'Car successfully added'
     else
       render :new, notice: :unprocessable_entity
     end
   end
 
   def destroy
-    @car.destroy
-    redirect_to profile_path(current_user)
+    if @car.destroy
+      redirect_to profile_path(current_user), notice: 'Car succesfully removed'
+    end
   end
 
   def user_cars
