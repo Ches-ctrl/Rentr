@@ -41,3 +41,14 @@
     min-width: 196px;
   }
 }
+
+@media (max-width: 390px) {
+  .btn-lg {
+    font-size: 20px;
+    min-width: 100px;
+  }
+
+  #punchline {
+    font-size: 30px;
+  }
+}
