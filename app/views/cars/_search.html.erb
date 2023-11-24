@@ -7,5 +7,5 @@
     <%= label_tag :end_date, "End Date", class: "form-label mb-0 form-input" %>
     <%= date_field_tag :end_date, params[:end_date], class: "form-control rounded-5" %>
   </div>
-  <%= submit_tag "Search", name: nil, class: "btn btn-primary ms-2 rounded-4" %>
+  <%= submit_tag "Search", name: nil, class: "btn btn-primary ms-2 rounded-4", id: "search-button" %>
 <% end %>
