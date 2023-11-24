@@ -16,7 +16,20 @@
 }
 
 #search-form {
+  background: #F4F4F4;
   position: sticky;
-  top: 50px; /* Height of the navbar */
+  top: 60px; /* Height of the navbar */
   z-index: 1020; /* Make sure this is less than the navbar's z-index if the navbar is also sticky */
+}
+
+.form-input {
+  width: 150px;
+}
+
+// .location-input {
+//   width: 100px;
+// }
+
+.navbar-dropdown {
+  z-index: 920;
 }
