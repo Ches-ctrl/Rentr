@@ -12,16 +12,12 @@ class CarsController < ApplicationController
       @cars = Car.where(id: @car_ids)
     end
 
-    # pluck start date and end date from car.bookings
-    # then create array of dates for each car
-    # then take booking dates from params
-    # then check if booking dates are included in car dates
-    # reject all cars that have booking dates included in car dates
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
         lng: car.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {car: car})
+        info_window_html: render_to_string(partial: "info_window", locals: {car: car}),
+        marker_html: render_to_string(partial: "marker", locals: {car: car})
       }
     end
   end

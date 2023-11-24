@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
+  get "/about", to: "pages#about", as: :about
+
   resources "cars", only: [:index, :show, :new, :create, :destroy] do
     collection do
       get :user_cars

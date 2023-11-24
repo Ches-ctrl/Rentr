@@ -1,1 +1,3 @@
-<p><%= car.day_rate %></p>
+<%= link_to car_path(car) do %>
+  <%= render partial: 'car', locals: { car: car } %>
+<% end %>
