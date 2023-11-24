@@ -24,7 +24,7 @@ export default class extends Controller {
       const endDate = this.startTarget.value.split(" to ")[1];
       const startDate = this.startTarget.value.split(" to ")[0];
       this.endTarget.value = endDate;
-      this.totalTarget.innerText = `Total = ${((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)) * this.rateValue}`;
+      this.totalTarget.innerText = `Total = £${((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)) * this.rateValue}`;
     }
   }
 }
