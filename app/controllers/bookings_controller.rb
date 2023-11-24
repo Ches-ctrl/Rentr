@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.car = Car.find(params[:car_id])
     if @booking.save
       respond_to do |format|
-        format.js { render inline: "location.reload(); $('#flash-notice').html('Car successfully booked!');" }
+        format.js { render inline: "location.reload();" }
       end
     else
       p @booking.errors.messages
@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
     if @booking.destroy
       redirect_to profile_path(current_user), notice: 'Booking successfully cancelled'
     else
-      render booking_path(@booking), alert: 'You are not authorized to cancel this booking'
+      render booking_path(@booking), status: :unprocessable_entity
     end
   end
 

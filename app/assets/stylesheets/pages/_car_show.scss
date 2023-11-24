@@ -104,6 +104,7 @@ hr.gradient {
   border-radius: 8px;
   width: 100%;
   align-content: start;
+  border: 1px solid rgba(69, 71, 75, 0.4);
 }
 
 .formLabelStyling {
@@ -123,7 +124,6 @@ hr.gradient {
   padding: 8px 16px;
   position: absolute;
   bottom: 20px;
-
 }
 
 .car-show-secondary-section-title {
@@ -193,24 +193,16 @@ hr.gradient {
   font-weight: bold;
 }
 
-// .alert {
-//   position: fixed;
-//   top: 60px;
-//   width: 20%;
-//   height: 40px;
-//   display: flex;
-//   align-items: center;
-
-//   a {
-//     display: flex;
-//     align-items: center;
-//   }
-// }
+.alert {
+  position: sticky;
+  top: 20px;
+  width: 20%;
+  text-align: end;
+}
 
 .must-login {
   margin-top: 0;
   width: 100%;
-  text-align: center;
 
   h3 {
     margin-top: 0;
