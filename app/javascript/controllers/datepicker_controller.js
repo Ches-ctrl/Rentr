@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"; // You need to import this to use new flatpickr()
 
 export default class extends Controller {
-  static targets = ["start", "end", "total"]
+  static targets = ["start", "end", "total", "days", "cost"]
   static values = {
     booked: Array,
     rate: Number
@@ -24,7 +24,10 @@ export default class extends Controller {
       const endDate = this.startTarget.value.split(" to ")[1];
       const startDate = this.startTarget.value.split(" to ")[0];
       this.endTarget.value = endDate;
-      this.totalTarget.innerText = `Total = £${((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)) * this.rateValue}`;
+      this.daysTarget.innerText = `Number of days: ${(new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)}`;
+      console.log(this.rateValue);
+      this.costTarget.innerText = `Cost per day: £${this.rateValue}`;
+      this.totalTarget.innerText = `Total: £${((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)) * this.rateValue}`;
     }
   }
 }

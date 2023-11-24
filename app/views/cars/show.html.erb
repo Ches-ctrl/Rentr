@@ -77,7 +77,9 @@
                 <%= f.input :end_date,
                   as: :hidden,
                   input_html: { data: { datepicker_target: "end" } } %>
-                <h5 data-datepicker-target="total" id="form-total"></h5>
+                <h6 class="d-flex justify-content-end bolded mt-5" data-datepicker-target="days"></h6>
+                <h6 class="d-flex justify-content-end bolded mt-3" data-datepicker-target="cost"></h6>
+                <h4 class="d-flex justify-content-end bolded mt-3" style="font-weight: 600;" data-datepicker-target="total" id="form-total"></h4>
               </div>
                 <%= f.submit input_html = { class: 'formButtonStyling' } %>
             <% end %>
@@ -96,6 +98,7 @@
                       <i class="fa-solid fa-trash"></i>
                     <% end %>
                   </div>
+
                   <p>The Car: <%= booking.car.brand %> <%= booking.car.model %></p>
                   <p>Booking Dates: <%= booking.start_date.strftime('%b %d %Y') %> <%= booking.end_date.strftime('%b %d %Y') %></p>
                   <p>Total Cost: £<%= ((booking.end_date - booking.start_date) * booking.car.day_rate).round(2) %></p>
