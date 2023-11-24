@@ -1,3 +1,59 @@
-<% @bookings.each do |booking| %>
-  <%= booking.car.model %>
+<% if current_user.bookings.any? %>
+  <div class="container-fluid mt-3">
+    <div class="row g-0">
+      <% current_user.bookings.each do |booking| %>
+        <div class="col-md-12 link-container">
+          <%= link_to car_path(booking.car) do %>
+            <div class="card">
+              <div class="row g-0">
+                <div class="col-md-6">
+                  <% carousel_id = "carousel#{booking.id}Indicators" %>
+                  <div id="card-image-index">
+                    <div id="<%= carousel_id %>" class="carousel slide">
+                      <div class="carousel-indicators">
+                        <% booking.car.photos.each_with_index do |photo, index| %>
+                          <button type="button" data-bs-target="#<%= carousel_id %>" data-bs-slide-to="<%= index %>" class="<%= 'active' if index.zero? %>" aria-label="Slide <%= index + 1 %>"></button>
+                        <% end %>
+                      </div>
+                      <div class="carousel-inner">
+                        <% booking.car.photos.each_with_index do |photo, index| %>
+                          <div class="carousel-item <%= 'active' if index.zero? %>">
+                            <%= image_tag(photo, class: 'd-block w-100', alt: "#{booking.car.brand} #{booking.car.model}") %>
+                          </div>
+                        <% end %>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#<%= carousel_id %>" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#<%= carousel_id %>" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="pt-2 col-md-3 border-end border-start d-flex flex-column" id="booking-info-index">
+                  <h2>Booking Details</h2>
+                  <div class= "mt-4 mb-auto">
+                    <h5 class="card-title me-2"> <i class="fa-solid fa-calendar"></i> <%= booking.start_date.strftime('%b %d %Y') %> - <%= booking.end_date.strftime('%b %d %Y') %></h5>
+                    <h5 class="card-text"> <i class="fa-solid fa-location-dot"></i> <%= booking.car.location %></h5>
+                    <h5 class="card-text"> <i class="fa-solid fa-money-bill"></i> Total £<%= ((booking.end_date - booking.start_date) * booking.car.day_rate).round(2)%></h5>
+                  </div>
+                </div>
+                <div class="col-md-3 pt-2 d-flex flex-column" id="car-info-index">
+                  <h2>Car Details</h2>
+                  <div class="mt-4 mb-auto">
+                    <h5 class="card-text"> <i class="fa-solid fa-car"></i></i> <%= booking.car.brand %> <%= booking.car.model %></h5>
+                    <h5 class="card-text"> <i class="fa-solid fa-gears"></i> <%= booking.car.transmission %></h5>
+                    <h5 class="card-price"> <i class="fa-solid fa-money-bill"></i> £<%= booking.car.day_rate.round() %>/day</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>
