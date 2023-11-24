@@ -16,9 +16,9 @@
 
 <div class="container mt-4">
   <div class="car-header-info">
-    <p><%= link_to 'Back' , :back %></p>
-    <p>|</p>
-    <p><%= link_to 'Home' , cars_path %></p>
+    <%= link_to :back do %>
+      <p><i class="fa-solid fa-left-long"></i></p>
+    <% end %>
     <p>|</p>
     <p><%= @car.category %></p>
     <p>|</p>
@@ -61,9 +61,10 @@
   <hr class="gradient">
   <div class="car-show-secondary-section">
 
+    <% if current_user %>
       <% unless @car.user == current_user %>
-        <div class="car-main-specs">
-          <h3 class="car-show-secondary-section-title">Book now!</h3>
+        <div class="car-main-specs" id="booking-form-container">
+          <h3 class="car-show-secondary-section-title text-center mb-4">Book Now!</h3>
           <div class="booking-form">
             <%= simple_form_for [@car, @booking] do |f| %>
               <% if @booking.errors.any? && @booking.errors.include?(:base) %>
@@ -72,33 +73,37 @@
               <div data-controller="datepicker" data-datepicker-booked-value="<%= @booked_dates.to_json %>">
                 <%= f.input :start_date,
                   as: :string,
-                  label: 'Enter chosen dates',
+                  label: 'Select your booking dates',
                   label_html: { class: 'formLabelStyling' },
                   input_html: { data: { datepicker_target: "start", action: "change->datepicker#update" }, class: "formInputStyling" } %>
                 <%= f.input :end_date,
                   as: :hidden,
                   input_html: { data: { datepicker_target: "end" } } %>
               </div>
-                <%= f.submit %>
+                <%= f.submit input_html = { class: 'formButtonStyling' } %>
             <% end %>
           </div>
         </div>
 
         <div class="action-booking-main-specs">
-          <h3 class="car-show-secondary-section-title">Your booking details</h3>
+          <h3 class="car-show-secondary-section-title text-center mb-4">My Bookings</h3>
           <div class="your-active-bookings">
-            <% Booking.where(car: @car, user: current_user).each do |booking| %>
-              <div class="your-active-booking-details">
-                <div class="your-active-booking-details-title">
-                  <p>Booking Reference: <%= booking.id %></p>
-                  <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} do %>
-                    <i class="fa-solid fa-trash"></i>
-                  <% end %>
+            <% if Booking.where(car: @car, user: current_user).any? %>
+              <% Booking.where(car: @car, user: current_user).each do |booking| %>
+                <div class="your-active-booking-details">
+                  <div class="your-active-booking-details-title">
+                    <p>Booking Reference: <%= booking.id %></p>
+                    <%= link_to booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} do %>
+                      <i class="fa-solid fa-trash"></i>
+                    <% end %>
+                  </div>
+                  <p>The Car: <%= booking.car.brand %> <%= booking.car.model %></p>
+                  <p>Booking Dates: <%= booking.start_date.strftime('%b %d %Y') %> <%= booking.end_date.strftime('%b %d %Y') %></p>
+                  <p>Total Cost: £<%= ((booking.end_date - booking.start_date) * booking.car.day_rate).round(2) %></p>
                 </div>
-                <p>The Car: <%= booking.car.brand %> <%= booking.car.model %></p>
-                <p>Booking Dates: <%= booking.start_date.strftime('%b %d %Y') %> <%= booking.end_date.strftime('%b %d %Y') %></p>
-                <p>Total Cost: £<%= ((booking.end_date - booking.start_date) * booking.car.day_rate).round(2) %></p>
-              </div>
+              <% end %>
+            <% else %>
+              <p class="text-start">You don't have any booking for this car</p>
             <% end %>
           </div>
         </div>
@@ -106,8 +111,9 @@
 
       <% if @car.user == current_user %>
         <div class="active-booking-main-specs w-100">
-          <h3 class="car-show-secondary-section-title">Active bookings for your car</h3>
+          <h3 class="car-show-secondary-section-title text-center mb-4">Active bookings for your car</h3>
           <div class="active-bookings">
+            <% if @car.bookings.any? %>
               <% @car.bookings.each do |booking| %>
                   <div class="active-booking-details">
                     <strong><p>Booking Reference: <%= booking.id %></p></strong>
@@ -115,8 +121,14 @@
                     <p>Booking Dates: <%= booking.start_date.strftime('%b %d %Y') %> - <%= booking.end_date.strftime('%b %d %Y') %></p>
                   </div>
               <% end %>
+            <% else %>
+              <p class="text-start">There are no active bookings for your car</p>
+            <% end %>
           </div>
         </div>
       <% end %>
+    <% else %>
+      <div class="must-login"><h3><%= link_to 'Log in', new_user_session_path %> to book a car</h3></div>
+    <% end %>
   </div>
 </div>
