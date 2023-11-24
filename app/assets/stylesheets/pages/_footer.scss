@@ -1,6 +1,22 @@
+// .footer {
+//   position: absolute;
+//   bottom: 0;
+//   width: 100%;
+//   background-color: #f8f9fa; /* Change the background color if needed */
+// }
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  flex: 1 0 auto;
+}
+
 .footer {
-  position: fixed;
-  bottom: 0;
+  flex-shrink: 0;
   width: 100%;
   background-color: #f8f9fa; /* Change the background color if needed */
 }

@@ -10,6 +10,9 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
+              <li class="nav-item active">
+                <%= link_to "About", about_path, class: "nav-link" %>
+              </li>
             <% if user_signed_in? %>
               <li class="nav-item active">
                 <%= link_to "All Cars", cars_path, class: "nav-link" %>
