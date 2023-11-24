@@ -12,14 +12,13 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.user = current_user
-    @booking.car = Car.find(params[:car_id])
+    @car = Car.find(params[:car_id])
+    @booking.car = @car
     if @booking.save
-      respond_to do |format|
-        format.js { render inline: "location.reload();" }
-      end
+      @booking = Booking.new
+      redirect_to car_path(@car), notice: 'Booking successfully added'
     else
-      p @booking.errors.messages
-      render :new, status: :unprocessable_entity
+      render 'cars/show', status: :unprocessable_entity
     end
   end
 
