@@ -15,3 +15,11 @@
 a {
   color: black;
 }
+
+i {
+  color: $main;
+}
+
+input:checked + .slider {
+  background-color: $main;
+}
