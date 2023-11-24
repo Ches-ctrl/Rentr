@@ -3,10 +3,25 @@ class CarsController < ApplicationController
 
   def index
     @cars = Car.all
+    if params[:start_date].present?
+      start_date = params[:start_date]
+      end_date = params[:end_date]
+      @car_ids = @cars.reject do |car|
+        car.bookings.pluck(:start_date, :end_date).map {|date| (date[0]..date[1]).to_a }.flatten.include?(start_date.to_date) || car.bookings.pluck(:start_date, :end_date).map {|date| (date[0]..date[1]).to_a }.flatten.include?(end_date.to_date)
+      end.map {|car| car.id }
+      @cars = Car.where(id: @car_ids)
+    end
+
+    # pluck start date and end date from car.bookings
+    # then create array of dates for each car
+    # then take booking dates from params
+    # then check if booking dates are included in car dates
+    # reject all cars that have booking dates included in car dates
     @markers = @cars.geocoded.map do |car|
       {
         lat: car.latitude,
-        lng: car.longitude
+        lng: car.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {car: car})
       }
     end
   end

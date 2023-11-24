@@ -1,14 +1,19 @@
 <div class="container-fluid mt-2 mb-4" data-controller="toggle">
   <div class="row">
 
-    <%# Switch %>
-    <div class="col-12 d-flex align-items-center justify-content-center mb-3"> <!-- Added mb-3 for margin-bottom space under the switch -->
-      <span class="me-2">See map</span> <!-- Text before the switch -->
-      <label class="switch">
-        <input type="checkbox" data-action="click->toggle#toggleMap">
-        <span class="slider round"></span>
-      </label>
-      <span class="ms-2">See cars</span> <!-- Text after the switch -->
+    <%# Search and Switch %>
+    <div id="search-form" class="col-12 d-flex justify-content-between mb-3"> <!-- Added mb-3 for margin-bottom space under the switch -->
+      <div class="col-4">
+        <%= render partial: 'search' %>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="me-2">See map</span> <!-- Text before the switch -->
+        <label class="switch">
+          <input type="checkbox" data-action="click->toggle#toggleMap">
+          <span class="slider round"></span>
+        </label>
+        <span class="ms-2">See cars</span> <!-- Text after the switch -->
+      </div>
     </div>
 
     <%# Cars %>

@@ -1,6 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+
+  a {
+    color: $main;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -13,4 +21,10 @@
 
 .nav-item {
   margin: 0 6px;
+}
+
+#search-form {
+  position: sticky;
+  top: 50px; /* Height of the navbar */
+  z-index: 1020; /* Make sure this is less than the navbar's z-index if the navbar is also sticky */
 }

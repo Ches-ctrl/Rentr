@@ -126,7 +126,7 @@ car_14 = Car.new(brand: "Rimac", model: "Nevera", transmission: "Automatic", loc
 
 car_15 = Car.new(brand: "Aston Martin", model: "Rapide" , transmission: "Automatic", location: "Hammersmith", day_rate: 320, description: "The Aston Martin Rapide E is an all-electric grand tourer produced by British automobile manufacturer Aston Martin. The Rapide E is powered by a 65 kWh lithium-ion battery pack and two electric motors, one on each axle. The front motor produces 185 kW (248 hp; 252 PS) and 450 N⋅m (332 lb⋅ft) of torque, while the rear motor produces 185 kW (248 hp; 252 PS) and 550 N⋅m (406 lb⋅ft) of torque. The Rapide E has a claimed 0–100 km/h (0–62 mph) acceleration time of 4.0 seconds and a top speed of 250 km/h (155 mph).")
 
-car_16 = Car.new(brand: "NIO", model: "ET7", transmission: "Automatic", location: "Stratford", day_rate: 320, description: "The NIO ET7 is an all-electric executive sedan produced by Chinese automobile manufacturer NIO. The ET7 is powered by a 70 kWh lithium-ion battery pack and two electric motors, one on each axle. The front motor produces 180 kW (241 hp; 244 PS) and 305 N⋅m (225 lb⋅ft) of torque, while the rear motor produces 300 kW (402 hp; 408 PS) and 644 N⋅m (475 lb⋅ft) of torque. The ET7 has a claimed 0–100 km/h (0–62 mph) acceleration time of 3.9 seconds and a top speed of 200 km/h (124 mph).")
+car_16 = Car.new(brand: "NIO", model: "ET7", transmission: "Automatic", location: "Kensington", day_rate: 320, description: "The NIO ET7 is an all-electric executive sedan produced by Chinese automobile manufacturer NIO. The ET7 is powered by a 70 kWh lithium-ion battery pack and two electric motors, one on each axle. The front motor produces 180 kW (241 hp; 244 PS) and 305 N⋅m (225 lb⋅ft) of torque, while the rear motor produces 300 kW (402 hp; 408 PS) and 644 N⋅m (475 lb⋅ft) of torque. The ET7 has a claimed 0–100 km/h (0–62 mph) acceleration time of 3.9 seconds and a top speed of 200 km/h (124 mph).")
 
 car_17 = Car.new(brand: "Deus", model: "Vayanne", transmission: "Automatic", location: "Ealing", day_rate: 430 , description: "The Deus Vayanne is an all-electric executive sedan produced by Chinese automobile manufacturer NIO. The ET7 is powered by a 70 kWh lithium-ion battery pack and two electric motors, one on each axle. The front motor produces 180 kW (241 hp; 244 PS) and 305 N⋅m (225 lb⋅ft) of torque, while the rear motor produces 300 kW (402 hp; 408 PS) and 644 N⋅m (475 lb⋅ft) of torque. The ET7 has a claimed 0–100 km/h (0–62 mph) acceleration time of 3.9 seconds and a top speed of 200 km/h (124 mph).")
 
@@ -143,12 +143,14 @@ car_photos = [["tesla_modelS_1.png","tesla_modelS_2.png","tesla_modelS_3.png","t
 
 
 cars.each_with_index do |car, i|
-        car_photos[i].each do |photo|
-          file = File.open("app/assets/images/cars/#{photo}")
-          car.photos.attach(io: file, filename: photo, content_type: "image/png")
-        end
-        car.user = User.all.sample
-        car.save!
+  car_photos[i].each do |photo|
+    file = File.open("app/assets/images/cars/#{photo}")
+    car.photos.attach(io: file, filename: photo, content_type: "image/png")
+    puts "Photo attached"
+  end
+  car.user = User.all.sample
+  car.save!
+  puts "Car created"
 end
 
 puts "all done! wheres my keys at?"
