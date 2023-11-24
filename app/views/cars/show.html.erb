@@ -89,7 +89,7 @@
           <h3 class="car-show-secondary-section-title text-center mb-4">My Bookings</h3>
           <div class="your-active-bookings">
             <% if Booking.where(car: @car, user: current_user).any? %>
-              <% Booking.where(car: @car, user: current_user).each do |booking| %>
+              <% Booking.where(car: @car, user: current_user).sort_by(&:id).each do |booking| %>
                 <div class="your-active-booking-details">
                   <div class="your-active-booking-details-title">
                     <p>Booking Reference: <%= booking.id %></p>
