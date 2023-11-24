@@ -1,0 +1,9 @@
+#booking-info-index h2, #car-info-index h2 {
+  color: $main;
+}
+
+a:hover {
+  #booking-info-index h2, #car-info-index h2 {
+    color: $secondary;
+  }
+}
