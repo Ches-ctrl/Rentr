@@ -1,3 +1,10 @@
-<h1>Cars#new</h1>
-<p>Find me in app/views/cars/new.html.erb</p>
-<%= render "form", car: @car %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mb-3">
+      <h1 class="text-center">Add your car</h1>
+      <div style="width: 75%; hight: 30%; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); padding: 20px; margin: 0 auto;">
+        <%= render "form", car: @car %>
+      </div>
+    </div>
+  </div>
+</div>
