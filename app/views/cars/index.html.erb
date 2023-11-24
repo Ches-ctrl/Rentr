@@ -1,8 +1,8 @@
-<div class="container-fluid mt-2 mb-4" data-controller="toggle">
+<div class="container-fluid mt-2" data-controller="toggle">
   <div class="row">
 
     <%# Search and Switch %>
-    <div id="search-form" class="col-12 d-flex justify-content-between mb-3"> <!-- Added mb-3 for margin-bottom space under the switch -->
+    <div id="search-form" class="col-12 d-flex justify-content-between align-items-center pb-2"> <!-- Added mb-3 for margin-bottom space under the switch -->
       <div class="col-4">
         <%= render partial: 'search' %>
       </div>
@@ -19,7 +19,7 @@
     <%# Cars %>
     <div id="cars-column" class="col-md-6" data-target="toggle.carsColumn">
       <div class="row"> <!-- This row will contain the grid of car cards -->
-        <% @cars.each do |car| %> <!-- Loop over each car -->
+        <% Car.where.not(user: current_user).each do |car| %> <!-- Loop over each car, that is not the user's own car -->
           <!-- Adjust the column size here for the desired number of cards per row, e.g., 'col-sm-6' for 2 cards per row on small screens and 'col-xl-4' for 3 cards per row on extra large screens -->
           <div class="col-sm-12 col-xl-6 mb-4">
             <%= render partial: 'car', locals: { car: car } %> <!-- Render the partial for each car -->

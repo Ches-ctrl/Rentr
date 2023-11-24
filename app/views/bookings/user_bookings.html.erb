@@ -2,7 +2,7 @@
   <div class="container-fluid mt-3">
     <div class="row g-0">
       <% current_user.bookings.each do |booking| %>
-        <div class="col-md-12 link-container">
+        <div class="col-md-11 mx-auto link-container">
           <%= link_to car_path(booking.car) do %>
             <div class="card mb-3">
               <div class="row g-0">
