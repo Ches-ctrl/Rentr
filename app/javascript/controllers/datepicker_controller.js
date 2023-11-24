@@ -3,10 +3,12 @@ import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"; // You need to import this to use new flatpickr()
 
 export default class extends Controller {
-  static targets = ["start", "end"]
-  static values = { booked: Array }
+  static targets = ["start", "end", "total"]
+  static values = {
+    booked: Array,
+    rate: Number
+  }
   connect() {
-    console.log(this.bookedValue);
     flatpickr(this.startTarget, {
       dateFormat: "Y-m-d",
       altInput: true,
@@ -20,7 +22,9 @@ export default class extends Controller {
   update() {
     if (this.startTarget.value.includes("to")) {
       const endDate = this.startTarget.value.split(" to ")[1];
-      this.endTarget.value = endDate
+      const startDate = this.startTarget.value.split(" to ")[0];
+      this.endTarget.value = endDate;
+      this.totalTarget.innerText = `Total = ${((new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24)) * this.rateValue}`;
     }
   }
 }

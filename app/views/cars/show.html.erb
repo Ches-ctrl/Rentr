@@ -70,7 +70,7 @@
               <% if @booking.errors.any? && @booking.errors.include?(:base) %>
                 <p id="error-message"><%= @booking.errors[:base].first %></p>
               <% end %>
-              <div data-controller="datepicker" data-datepicker-booked-value="<%= @booked_dates.to_json %>">
+              <div data-controller="datepicker" data-datepicker-booked-value="<%= @booked_dates.to_json %>" data-datepicker-rate-value="<%= @daily_rate.to_json %>">
                 <%= f.input :start_date,
                   as: :string,
                   label: 'Select your booking dates',
@@ -79,6 +79,7 @@
                 <%= f.input :end_date,
                   as: :hidden,
                   input_html: { data: { datepicker_target: "end" } } %>
+                <h5 data-datepicker-target="total" id="form-total"></h5>
               </div>
                 <%= f.submit input_html = { class: 'formButtonStyling' } %>
             <% end %>
