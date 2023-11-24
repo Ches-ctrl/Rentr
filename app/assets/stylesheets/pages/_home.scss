@@ -2,5 +2,16 @@
 #punchline {
   font-size: 2em;
   font-weight: bold;
-  color: #e6dcdc;
+  color: white;
+}
+
+.btn {
+  background-color: $main;
+  border-color: $main;
+  color: white;
+
+  &:hover {
+    background-color: $secondary;
+    border-color: $secondary;
+  }
 }

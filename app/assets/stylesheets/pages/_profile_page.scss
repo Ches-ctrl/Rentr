@@ -35,6 +35,14 @@ h1 {
   padding: 12px;
 }
 
+p a, h4 a {
+  color: $main
+}
+
 p a:hover, h4 a:hover {
-  text-decoration: underline;
+  color: $secondary;
+
+  i {
+    color: $secondary;
+  }
 }
